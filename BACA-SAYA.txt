@@ -1,0 +1,33 @@
+APK PAWONE KASIR (database lokal di HP)
+
+Data tersimpan di memori HP (IndexedDB milik aplikasi). Tidak perlu server atau internet.
+Catatan: data TIDAK tersinkron antar HP, dan terhapus jika aplikasi di-uninstall.
+Gunakan Atur -> Cadangan data -> Cadangkan secara rutin.
+
+CARA MEMBUAT FILE APK (tanpa Android Studio, gratis lewat GitHub)
+1. Buat akun di github.com, lalu klik New repository (pilih Private), beri nama bebas, Create.
+2. Di halaman repository: Add file -> Upload files. Seret SEMUA isi folder ini
+   (termasuk folder .github, www, assets, dan berkas package.json, capacitor.config.json, .gitignore).
+   Pastikan folder ".github" ikut terunggah. Klik Commit changes.
+3. Buka tab Actions -> pilih "Build APK" -> Run workflow. Tunggu sekitar 5-10 menit sampai centang hijau.
+4. Klik proses yang selesai -> di bagian Artifacts unduh "pawone-kasir-apk" (berkas zip berisi app-debug.apk).
+5. Kirim app-debug.apk ke HP, buka, izinkan "Instal dari sumber tidak dikenal", lalu Install.
+   Jika muncul peringatan Play Protect, pilih "Tetap instal" (ini APK buatan sendiri, bukan dari Play Store).
+
+ALTERNATIF (komputer dengan Android Studio): jalankan
+  npm install
+  (unduh jsQR.js dan qrcode.js ke www/lib, lihat build-apk.yml)
+  npx cap add android
+  npx cap sync android
+  npx cap open android   -> Build > Build APK(s)
+
+CETAK STRUK BLUETOOTH (di APK)
+- Cocok untuk printer thermal Bluetooth biasa (jenis Bluetooth Classic/SPP), kertas 58 mm atau 80 mm.
+- Pertama kali: nyalakan printer, pasangkan (pair) lewat Pengaturan Bluetooth Android (PIN umumnya 0000 atau 1234).
+- Di aplikasi: Atur -> Printer thermal -> Pilih / ganti printer -> ketuk printer Anda. Itu menjadi printer default.
+- Ganti printer di kemudian hari: pasangkan printer baru, lalu ulangi Pilih / ganti printer. Tidak perlu membuat ulang APK.
+- Tombol "Tes cetak" memastikan koneksi dan logo tercetak. Lebar kertas dan opsi logo bisa diatur di kartu yang sama.
+- Android 12 ke atas akan meminta izin "Perangkat sekitar", pilih Izinkan.
+- Printer yang hanya mendukung BLE (sangat jarang untuk printer kasir) tidak terdaftar di daftar ini.
+- Tombol "Bagikan struk" tetap tersedia untuk mengirim struk berbentuk teks ke aplikasi lain.
+- Pilihan printer disimpan per HP (tidak ikut cadangan data).
